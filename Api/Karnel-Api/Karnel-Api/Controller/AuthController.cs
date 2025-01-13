@@ -12,10 +12,7 @@ namespace Karnel_Api.Controller
     {
         private readonly AuthService _authService;
 
-        public AuthController(AuthService authService)
-        {
-            _authService = authService;
-        }
+        public AuthController(AuthService authService) => _authService = authService;
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO registerDto)
@@ -40,12 +37,9 @@ namespace Karnel_Api.Controller
                 var user = await _authService.Login(loginDto);
                 return Ok(new
                 {
-                  
-                  id=user.Id,
-                  email=user.Email,
-                    name = user.Name,
-                    avatar=user.Avatar,
-                    role=user.Role
+                    id = user.Id,
+                    email = user.Email,
+                    name = user.Name
                 });
             }
             catch (Exception e)
@@ -102,6 +96,7 @@ namespace Karnel_Api.Controller
             var user = await _authService.GetAll();
             return Ok(user);
         }
+
         [HttpPost("verify-reset-token")]
         public async Task<IActionResult> VerifyResetToken([FromBody] string token)
         {
@@ -116,5 +111,4 @@ namespace Karnel_Api.Controller
             }
         }
     }
-    
 }
