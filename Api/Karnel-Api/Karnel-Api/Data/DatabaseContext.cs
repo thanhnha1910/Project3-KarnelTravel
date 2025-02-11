@@ -99,7 +99,7 @@ public class DatabaseContext:DbContext
             .HasOne(b => b.User)
             .WithMany(u => u.Bookings)
             .HasForeignKey(b => b.UserID)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Tour - Booking relationship
         modelBuilder.Entity<Booking>()
